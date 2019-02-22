@@ -1,0 +1,51 @@
+Exam 1 Review
+
+ACID Properties
+	Transaction management
+	Atomicity
+		either all the changes or none of them are made to the database
+	Consistency
+		Transaction must perserve consistency contraints of the database
+	Isolation
+		The result must be "as if" the transaction ran alone
+	Durability
+		Once transaction has completed, changes must not be lost
+
+Chapter 2
+	
+Chapter 3
+	A relation should contain only one "concept", or it has duplicate data!
+	Find functional dependencies stemming from the presence of multiple concepts
+	Normalization
+
+Chapter 4
+	Data Models
+		ERD (Entity Relationship Diagram)
+		UML (Unified Modeling Language)
+		Crows Foot
+	Is-a relationships and subclasses
+	Diagramming weak and strong entities
+	Converting diagrams into Relational Schemas
+
+Chapter 7 (Kinds of constraints)
+	Key
+		Implements a uniqueness constraint
+	Foreign-key
+		Implements referential integrity
+	Value-based, or domain constriants
+		Constran values of a particular attribute
+	Tuple-based constraint
+		specify requried relationship
+	Assertions
+	Triggers
+
+Chapter 8
+
+Chapter 9
+	JDBC functionality
+	How to get a driver
+	Driver class
+		simpleDB = simpleDriver
+		Mariadb = Driver
+		MySQL = ConnectorJ
+	Java.sql
