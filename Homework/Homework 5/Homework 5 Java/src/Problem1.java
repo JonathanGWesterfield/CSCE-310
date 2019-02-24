@@ -67,8 +67,8 @@ public class Problem1
     public String execPriceStmt() throws SQLException
     {
         Double userPrice = getUserPrice();
-        String stmt = "SELECT model, price FROM PC WHERE price > " + (userPrice - 5) +
-                "AND price < " + (userPrice + 5) + ";";
+        String stmt = "SELECT product.maker, product.model, pc.speed, pc.price FROM product " +
+                "JOIN pc ON product.model=pc.model";
         Statement getPC = conn.createStatement();
         ResultSet result = getPC.executeQuery(stmt);
 
@@ -79,6 +79,9 @@ public class Problem1
         System.out.println();
         while (result.next())
         {
+            String maker = result.getString("maker");
+
+
             String model = result.getString("model");
             pcModels.add(model);
 
