@@ -7,7 +7,7 @@ public class Problem2
     // private String driver = "org.apache.derby.jdbc.EmbeddedDriver";
     // private Connection conn;
 
-    private String connString = "jdbc:mariadb://localhost:3306/Computers?user=root&password=root";
+    private String connString = "jdbc:mariadb://localhost:3306/Ships?user=root&password=root";
     Connection conn;
     private ShipClassObj newClass;
     private ArrayList<ShipsObj> newShipslist;
@@ -18,8 +18,9 @@ public class Problem2
         {
             Problem2 pr = new Problem2();
             pr.getClassInfo();
-            // pr.getNewShipsList();
+            pr.getNewShipsList();
             pr.insertClass();
+            pr.insertShipList();
 
             pr.closeConn();
         }
@@ -102,7 +103,7 @@ public class Problem2
 
     public void insertClass() throws SQLException
     {
-        String query = "INSERT INTO classes (class, type, country, numGuns, bore, disp) VALUES ('?', '?', '?', ?, ?, ?);";
+        String query = "INSERT INTO classes (class, type, country, numGuns, bore, disp) VALUES (?, ?, ?, ?, ?, ?);";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, newClass.getShipClass());
         stmt.setString(2, newClass.getType());
@@ -112,11 +113,24 @@ public class Problem2
         stmt.setInt(6, newClass.getDisp());
 
         int i = stmt.executeUpdate();
+        System.out.println();
         System.out.println(i + " records inserted into classes table");
     }
 
-    public void insertShipList()
+    public void insertShipList() throws SQLException
     {
-        String query = "INSERT INTO ships VALUES ('?', '?', ?);";
+        String query = "INSERT INTO ships VALUES (?, ?, ?);";
+
+        for (ShipsObj ship : this.newShipslist)
+        {
+            PreparedStatement stmt = this.conn.prepareStatement(query);
+            stmt.setString(1, ship.getName());
+            stmt.setString(2, ship.getShipClass());
+            stmt.setInt(3, ship.getLaunched());
+
+            int i = stmt.executeUpdate();
+            System.out.println();
+            System.out.println(i + " record inserted into ships table");
+        }
     }
 }
