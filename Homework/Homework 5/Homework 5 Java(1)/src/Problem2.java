@@ -4,8 +4,11 @@ import java.io.*;
 
 public class Problem2
 {
+    // private String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+    // private Connection conn;
+
     private String connString = "jdbc:mariadb://localhost:3306/Computers?user=root&password=root";
-    private Connection conn;
+    Connection conn;
 
     public static void main(String[] args)
     {
@@ -21,7 +24,15 @@ public class Problem2
             e.printStackTrace();
         }
 
+
     }
+
+    /*public Problem2() throws SQLException
+    {
+        String protocol = "jdbc:derby:Ships";
+        conn = DriverManager.getConnection(protocol);
+        System.out.println("Connected to Database");
+    } */
 
     public Problem2() throws SQLException
     {
@@ -33,5 +44,21 @@ public class Problem2
     {
         this.conn.close();
         System.out.println("\n\nClosed DB Connection");
+    }
+
+    public void getClassInfo()
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("What is the class of ship: ");
+        String shipClass = scanner.next();
+
+        System.out.print("What is the type of the ship class: ");
+        String type = scanner.next();
+
+        System.out.println("What is the country? ");
+        String country = scanner.next();
+
+
     }
 }

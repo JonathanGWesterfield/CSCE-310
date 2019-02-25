@@ -13,9 +13,9 @@ public class Problem1
         try
         {
             Problem1 problem1 = new Problem1();
-            // problem1.findByPrice();
-            // problem1.getUserLaptopMinimums();
-            // problem1.getByMaker();
+            // problem1.findByPrice(); // Part A
+            // problem1.getUserLaptopMinimums(); // Part B
+            problem1.getByMaker(); // Part C
             problem1.closeConn();
         }
         catch (SQLException e)
