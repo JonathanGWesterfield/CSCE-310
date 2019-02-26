@@ -1,5 +1,23 @@
 Exam 1 Review
 
+Types of Questions:
+	Given a schema and some SQL, write the query output
+	Explain the output difference givent 2 queries and a schema
+	Describe what a query does
+	Write SQL given a query tree
+	Write SQL to do stuff
+	All of the above for relational algebra
+	Make chages to an ERD
+	Write a JDBC program
+
+What to study:
+	Terminology sheets
+	Slides
+	Homework Problems (Especially the relational Algebra)
+	Quizzes
+	Coding Examples
+	Textbook DB examples
+
 ACID Properties
 	Transaction management
 	Atomicity
@@ -12,11 +30,18 @@ ACID Properties
 		Once transaction has completed, changes must not be lost
 
 Chapter 2
-	
+	Relational Data Model
+	Table structure, fiedl types, null values, keys and foreign keys, constraints & table creation in SQL
+	Relational Algebra, operators
+	Derby Examples
+
 Chapter 3
 	A relation should contain only one "concept", or it has duplicate data!
-	Find functional dependencies stemming from the presence of multiple concepts
+	Find functional dependencies stemming from the presence of multiple concepts (entities in a schema)
 	Normalization
+		Split the relation into multiple relations each containing one concept (normality)
+			All of the original data is represented
+			Eliminates anomalies
 
 Chapter 4
 	Data Models
@@ -26,6 +51,13 @@ Chapter 4
 	Is-a relationships and subclasses
 	Diagramming weak and strong entities
 	Converting diagrams into Relational Schemas
+
+Chapter 5 & 6
+	Relational Algebra on Bags
+	SQL query clauses
+	Updating Tables
+	Views
+	Query Trees
 
 Chapter 7 (Kinds of constraints)
 	Key
@@ -37,15 +69,52 @@ Chapter 7 (Kinds of constraints)
 	Tuple-based constraint
 		specify requried relationship
 	Assertions
+		Specifies an inter-relational constraint as a boolean expression
 	Triggers
+		Event-condition-actions
 
 Chapter 8
+	Data redundancy to improve query performance
+	Denormalization
+	Indexes
+		Record identifiers
+	Maintenance costs
 
 Chapter 9
 	JDBC functionality
+	Five JDBC interfaces
+		Driver
+		Connection
+		Statemnet
+		ResultSet
+		ResultSetMetaData
 	How to get a driver
 	Driver class
 		simpleDB = simpleDriver
 		Mariadb = Driver
 		MySQL = ConnectorJ
 	Java.sql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
