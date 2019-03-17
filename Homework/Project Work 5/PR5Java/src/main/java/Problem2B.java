@@ -8,8 +8,7 @@ import org.bson.Document;
 
 import java.util.Arrays;
 
-public class Problem2B
-{
+public class Problem2B {
     //@SuppressWarnings("deprecation")
     public static void main(String[] args) throws Exception {
         MongoClient mongoClient = null;
@@ -46,3 +45,7 @@ public class Problem2B
         }
     }
 }
+/*
+db.games.aggregate([{$match:{year:"1990", team: "SEA", defense_interceptions:{$ne:0}}},
+{"$project":{_id:0, player:"$player_id", gameNum:"$game_number"}}])
+ */

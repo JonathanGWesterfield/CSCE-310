@@ -46,3 +46,6 @@ public class Problem2A
         }
     }
 }
+/**
+ * db.games.aggregate([{$match:{player_id:4847}},{$group:{_id:"$year",count:{$sum:1}}}])
+ */
