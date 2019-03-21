@@ -1,9 +1,13 @@
+import com.mongodb.Block;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Projections;
 import org.bson.Document;
 
 import java.util.Arrays;
@@ -11,6 +15,14 @@ import java.util.Arrays;
 public class Problem2B {
     //@SuppressWarnings("deprecation")
     public static void main(String[] args) throws Exception {
+
+        Block<Document> printBlock = new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                System.out.println(document.toJson());
+            }
+        };
+
         MongoClient mongoClient = null;
         try {
             mongoClient = MongoClients.create(
@@ -30,12 +42,26 @@ public class Problem2B {
                 else System.out.println("Collection NOT found!");
             } else System.out.println("Database NOT found!");
 
-            // TODO: FIGURE OUT THE MONGODB QUERY
+            /**
+             db.games.aggregate([{$match:{year:"1990", team: "SEA", defense_interceptions:{$ne:0}}},
+             {"$project":{_id:0, player:"$player_id", gameNum:"$game_number"}}])
+             */
 
-            Document myDoc = coll.find().first(); /** ITS THIS LINE */
-            if (myDoc != null)
-                System.out.println(myDoc.toJson());
-            else System.out.println("First document NOT found");
+            coll.aggregate(Arrays.asList(
+                    Aggregates.match(
+                            Filters.and(
+                                    Filters.ne("defense_interceptions", 0),
+                                    Filters.eq("team", "SEA"),
+                                    Filters.eq("year", "1990")
+                            )
+                    ),
+                    Aggregates.project(
+                            Projections.fields(
+                                    Projections.include("player_id", "game_number"),
+                                    Projections.excludeId()
+                            )
+                    )
+                    )).forEach(printBlock);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,7 +71,4 @@ public class Problem2B {
         }
     }
 }
-/*
-db.games.aggregate([{$match:{year:"1990", team: "SEA", defense_interceptions:{$ne:0}}},
-{"$project":{_id:0, player:"$player_id", gameNum:"$game_number"}}])
- */
+
