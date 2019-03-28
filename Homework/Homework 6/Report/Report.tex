@@ -1,0 +1,115 @@
+\documentclass [a4paper,12pt] {article}
+\usepackage{fullpage}
+\begin{document}
+\title{
+    Homework 6
+}
+\author{
+    Jonathan Westerfield
+    \and
+    224005649
+}
+\date{\today}
+\maketitle
+
+\begin{quote} 
+\centering 
+\textit {
+    An Aggie Does Not Lie Cheat Or Steal Nor Tolerate Those Who Do.
+}
+\end{quote}
+\newpage
+
+\section {Exercise 13.2.5, p568}
+    To modify a block on disk, we must read it into main memory, perform the 
+    modification, and write it back. Assume that the modification in main memory 
+    takes less time than it does for the disk to rotate, and that the disk 
+    controller postpones other requests for disk access until the block is ready
+    to be written back to the disk. For the Megatron 747 disk, what is the time
+    to modify a block?
+
+    \vspace{.2in}
+
+    The formula for modification time is: seek time + average rotational latency 
+    + transfer time. In this case, we have 2 rotations and are using the average 
+    values for a write to the disk. The time is 
+    \(6.46 + 4.17 + (2 * 8.33) +.13 = 27.42 ms\)
+\section{Exercise 13.3.5, p575}
+    If we read \textit{k} randomly chosen blocks form one cylinder, on the
+    average how far around the cylinder must we go before we pass all of the 
+    blocks?
+
+    \vspace{.2in}
+
+    1024 blocks are exactly one cylinder of the Megatron 747 and they can be 
+    accessed in one average seek. All the blocks on a cylinder can be read in 
+    16 rotations of the disk. The number of \textit{k} blocks would need to be
+    divided by 1024 and then multiplied by 16.
+    \[rotations = (k / 1024) * 16\]
+\section{Exercise 13.4.1, p587}
+    Compute the parity bit for the following bit sequences:
+    \subsection {Part A: 00111011}
+        001110111
+    \subsection {Part B: 00000000}
+        000000000
+    \subsection {Part C: 10101101}
+        101011011
+
+\section{Exercise 13.4.7, p589}
+    Using the same RAID level  4 scheme as in Exercise 13.4.6, suppose that data 
+    disk 1 has failed. Recover the block of that disk under the following 
+    circumstances:
+    \subsection {Part A}
+        The contents of disks 2 through 4 are 01010110, 11000000, and 00111011,
+        while the redundant disk holds 11111011.
+
+        \vspace{.2in}
+
+        Disk 1: 01010110
+    \subsection {Part B}
+        The contents of disks 2 through 4 are 11110000, 11111000, and 00111111,
+        while the redundant disk holds 00000001.
+    
+        \vspace{.2in}
+
+        Disk 1: 00110110
+\section{Exercise 13.5.1, p593}
+    Suppose a record has the following fields in this order: A character string 
+    of length 15 (15 bytes), an integer (2 bytes), a SQL date (10 bytes), and 
+    a SQL time (10 bytes) (no decimal point). How many bytes does the record take if:
+    \subsection {Part A}
+        Fields can start at any byte.
+
+        \vspace{.2in}
+
+        Assuming that the SQL date is a CHAR array of length 10 for the format:
+        HH:MI:SS (supported range is from  '-838:59:59' to '838:59:59'), then
+        the record length is as follows: \(15 + 2 + 10 + 10 = 37 \) bytes.
+    \subsection {Part C}
+        Fields must start at a byte that is a multiple of 8.
+
+        \vspace{.2in}
+
+        Using the same information above, the character string must be of length
+        16, the integer must be 8 bytes, the SQL date is 16 bytes and the SQL time
+        is 16 bytes in order to be a multiple of 8. The record length is as follows:
+        \(16 + 8 + 16 + 16 = 56\) bytes.
+
+\section{Laptop Specifications}
+    Concerning your laptop specifications. What is its processor and clock speed? 
+    What is the size and speed of main memory? What is the size and speed of its 
+    non-volatile storage device?
+
+    \begin{itemize}
+        \item[$-$]Processor: Intel Core i7
+        \item[$-$]Processor Clock Speed: 2.2Ghz
+        \item[$-$]Size of Main Memory: 16 GB
+        \item[$-$]Speed of Main Memory: 1600 MHz DDR3
+        \item[$-$]Size of Non-volatile Storage: 149 GB
+        \item[$-$]Speed of Non-volatile Storage:
+        \begin{itemize}
+            \item[$-$]Read Speed: 710.4 MB/s
+            \item[$-$]Write Speed: 281.9 MB/s
+        \end{itemize}
+    \end{itemize}
+\end{document}
