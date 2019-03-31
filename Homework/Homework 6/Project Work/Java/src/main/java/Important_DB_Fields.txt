@@ -1,0 +1,3 @@
+game_id, home_team (Ex. PIT), away_team (Ex. TEN), desc,
+total_home_score, total_away_score,
+qtr (1,2,3,4,5overtime) (quarter)
