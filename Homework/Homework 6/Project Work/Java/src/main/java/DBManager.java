@@ -21,25 +21,28 @@ public class DBManager
 {
 	private final String dbName = "playsDB";
 	private final String collName = "plays";
+	private static DBManager mongoDBmgr = null;
 	private MongoClient client;
+	private MongoDatabase database;
+	private MongoCollection<Document> coll;
+	private GameDAOImpl gmDao;
 
 	// Constructor creates connection to the DB
 	public DBManager()
 	{
 		try
 		{
-			client = MongoClients.create(
+			this.client = MongoClients.create(
 					MongoClientSettings.builder()
 							.applyToClusterSettings(builder ->
 									builder.hosts(Arrays.asList(new ServerAddress("localhost", 27017))))
 							.build()
 			)/*new MongoClient( "localhost" , 27017 )*/;
-			MongoCollection<Document> coll = null;
-			MongoDatabase database = client.getDatabase(dbName);
+			this.database = client.getDatabase(dbName);
 			if (database != null)
 			{
 				System.out.println("Connect to Database Successful");
-				coll = database.getCollection(collName);
+				this.coll = database.getCollection(collName);
 				if (coll != null)
 					System.out.println("Select Collection Successful");
 				else
@@ -65,5 +68,28 @@ public class DBManager
 		}
 	}
 
+	// A singleton design pattern
+	public static DBManager getInstance()
+	{
+		if(mongoDBmgr == null)
+			mongoDBmgr = new DBManager();
+
+		return mongoDBmgr;
+	}
+
+	public MongoCollection<Document> getCollection()
+	{
+		return this.coll;
+	}
+
+	public MongoDatabase getDatabase()
+	{
+		return this.database;
+	}
+
+	public Collection<DBGame> findAllGames(Integer gameID)
+	{
+		return gmDao.findGames(gameID);
+	}
 
 }
