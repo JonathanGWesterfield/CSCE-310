@@ -50,12 +50,11 @@ public class GameDAOImpl implements GameDao
 		);
 		System.out.println("Text search matches: " + matchCount);
 
-		FindIterable<Document> docs = coll.find(
-				Filters.and(
+		FindIterable<Document> docs = coll.find(query
+				/* Filters.and(
 						Filters.text("GOOD touchdown"),
 						Filters.eq("game_id", gameID.intValue())
-				)
-
+				) */
 		);
 
 		if(docs != null)
