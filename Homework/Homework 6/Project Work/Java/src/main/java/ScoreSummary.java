@@ -13,7 +13,7 @@ public class ScoreSummary
 		this.eventDescriptionList = new ArrayList<>();
 
 		pullDescriptions();
-		removeIncompletes();
+		removeIncompletesAndTimeouts();
 		replaceShotgun();
 		replaceNoHuddle();
 		replaceParenthesis();
@@ -75,13 +75,13 @@ public class ScoreSummary
 	/**
 	 * USE THIS METHOD TO DO ALL FURTHER DELETIONS!!!
 	 */
-	public void removeIncompletes()
+	public void removeIncompletesAndTimeouts()
 	{
 		ArrayList<String> popStrings = new ArrayList<>();
 		ArrayList<String> tempList = eventDescriptionList;
 		for(String desc : eventDescriptionList)
 		{
-			if (desc.toLowerCase().contains("incomplete"))
+			if (desc.toLowerCase().contains("incomplete") || desc.toLowerCase().contains("timeout"))
 				popStrings.add(desc);
 		}
 

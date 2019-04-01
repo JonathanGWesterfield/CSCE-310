@@ -35,6 +35,8 @@ public class FullGameReport
 		ScoreReport report = new ScoreReport(gameEventList);
 		ScoreSummary summary = new ScoreSummary(gameEventList);
 
+		// Print out the report
+		System.out.println("\n\nGame Report For Game: " + queryID);
 		report.printScoreReport();
 
 	}
