@@ -14,45 +14,14 @@ public class ScoreReport
 
 	Collection<DBGame> gameEventList;
 
-	public static void main(String[] args)
-	{
-		long cmt1, cmt2;
-
-		System.out.println("Starting Report Generation");
-
-		// make sure program is invoked correctly
-		if (args.length != 1)
-		{
-			System.out.println("Usage: java ScoreReport <game id>");
-			System.exit(-1);
-		}
-
-		// check to make sure the game id is actually a number
-		if (!isNumeric(args[0]))
-		{
-			System.out.println("Game ID is must be a number!\nExiting!");
-			System.exit(-1);
-		}
-
-		// get the game ID to query for
-		Integer queryID = Integer.parseInt(args[0]);
-
-		ScoreReport report = new ScoreReport(queryID);
-		report.printScoreReport();
-
-
-	}
-
-	public ScoreReport(Integer gameID)
+	public ScoreReport(Collection<DBGame> gameEventList)
 	{
 		this.homeScoreMap = new HashMap<>();
 		this.awayScoreMap = new HashMap<>();
-		this.dbMgr = new DBManager();
-		this.queryGameID = gameID;
+		this.gameEventList = gameEventList;
 
 		getScoreInfo();
 		calcQuarterScores();
-
 	}
 
 	public void printScoreReport()
@@ -73,8 +42,6 @@ public class ScoreReport
 
 	public void getScoreInfo()
 	{
-		gameEventList = dbMgr.findAllGames(queryGameID);
-
 		if (gameEventList == null)
 		{
 			System.out.println("THERE WERE NO EVENTS FOUND FOR THIS GAME ID");
@@ -128,47 +95,4 @@ public class ScoreReport
 
 		return;
 	}
-
-	/**
-	 * Check if a string is numeric. Helper for getUserGameID to make sure
-	 * user is actaully puttin in a game ID
-	 * @param strNum
-	 * @return
-	 */
-	public static boolean isNumeric(String strNum)
-	{
-		try
-		{
-			double d = Double.parseDouble(strNum);
-		}
-		catch (NumberFormatException | NullPointerException nfe)
-		{
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Get the game ID from the user and make sure it is actually a number.
-	 * If it's not a number, ask again.
-	 * @return
-	 */
-	public static String getUserGameID()
-	{
-		boolean stop = false;
-		String gameID = "";
-		do
-		{
-			Scanner keyboard = new Scanner(System.in);
-			System.out.print("Enter a game ID to get a report for: ");
-			gameID = keyboard.next();
-
-			if (isNumeric(gameID))
-				stop = true;
-		} while (!stop);
-
-		return gameID;
-	}
-
-
 }
