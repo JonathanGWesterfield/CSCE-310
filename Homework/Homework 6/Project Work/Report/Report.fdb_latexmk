@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1554143098 "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.tex" "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.pdf" "Report" 1554143098
-  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.aux" 1554143098 8 a94a2480d3289e625eea47cd1b285758 ""
-  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.tex" 1554143096 6466 f6ac7fd09e1824bda9d267469f8bad34 ""
+["pdflatex"] 1554143161 "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.tex" "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.pdf" "Report" 1554143171
+  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.aux" 1554143163 2256 2b69ae830a0cbe182800931fe29dc311 ""
+  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.tex" 1554143171 6464 2ebf5216e9b0624dfe6483a569ba825b ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1480098701 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1480098701 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -54,11 +54,11 @@
   "Game_Report_2017112000.png" 1554142084 332000 66fe7292d9c3fc2c7dd7efa9a610cafb ""
   "Game_Report_2018092303.png" 1554142175 210301 e414115b6b8cebc4659236aa65fdef1a ""
   "NFLPlaysImport.png" 1554058086 247583 b01bc04f7fcb743261436ce97587fc70 ""
-  "Report.aux" 0 -1 0 ""
-  "Report.tex" 1554143096 6466 f6ac7fd09e1824bda9d267469f8bad34 ""
+  "Report.aux" 1554143163 2256 2b69ae830a0cbe182800931fe29dc311 ""
+  "Report.tex" 1554143171 6464 2ebf5216e9b0624dfe6483a569ba825b ""
   (generated)
+  "Report.log"
   "Report.pdf"
+  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.pdf"
   "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.log"
   "Report.aux"
-  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.pdf"
-  "Report.log"
