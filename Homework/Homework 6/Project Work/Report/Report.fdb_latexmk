@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1554058691 "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.tex" "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.pdf" "Report" 1554058692
-  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.aux" 1554058692 1262 d087a7e15b1981bfbcfb9d43a02b5be8 ""
-  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.tex" 1554058691 5161 af21aacbb2642c25fcb7c7d49b3f4f68 ""
+["pdflatex"] 1554143098 "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.tex" "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.pdf" "Report" 1554143098
+  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.aux" 1554143098 8 a94a2480d3289e625eea47cd1b285758 ""
+  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.tex" 1554143096 6466 f6ac7fd09e1824bda9d267469f8bad34 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1480098701 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1480098701 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -49,12 +49,16 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1523934492 2717033 f61a5287d9c22a39a74f1979fe3f905c ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1523934516 4220280 10cab8fbd7c5a7c52aba9917e190d018 ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
+  "Game_Report_2009091000.png" 1554141063 147795 b76acde40956b1bfbc84998ff940119e ""
+  "Game_Report_2016101601.png" 1554142135 149168 033c11f35b0079fb3a1eb4585d263648 ""
+  "Game_Report_2017112000.png" 1554142084 332000 66fe7292d9c3fc2c7dd7efa9a610cafb ""
+  "Game_Report_2018092303.png" 1554142175 210301 e414115b6b8cebc4659236aa65fdef1a ""
   "NFLPlaysImport.png" 1554058086 247583 b01bc04f7fcb743261436ce97587fc70 ""
-  "Report.aux" 1554058692 1262 d087a7e15b1981bfbcfb9d43a02b5be8 ""
-  "Report.tex" 1554058691 5161 af21aacbb2642c25fcb7c7d49b3f4f68 ""
+  "Report.aux" 0 -1 0 ""
+  "Report.tex" 1554143096 6466 f6ac7fd09e1824bda9d267469f8bad34 ""
   (generated)
-  "Report.log"
-  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.pdf"
-  "Report.aux"
   "Report.pdf"
   "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.log"
+  "Report.aux"
+  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 6/Project Work/Report/Report.pdf"
+  "Report.log"
