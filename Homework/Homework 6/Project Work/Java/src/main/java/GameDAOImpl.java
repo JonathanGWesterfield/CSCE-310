@@ -42,20 +42,7 @@ public class GameDAOImpl implements GameDao
 
 		coll.createIndex(Indexes.text("desc"));
 
-		long matchCount = coll.countDocuments(
-				Filters.and(
-						Filters.text("GOOD touchdown"),
-						Filters.eq("game_id", gameID.intValue())
-				)
-		);
-		System.out.println("Text search matches: " + matchCount);
-
-		FindIterable<Document> docs = coll.find(query
-				/* Filters.and(
-						Filters.text("GOOD touchdown"),
-						Filters.eq("game_id", gameID.intValue())
-				) */
-		);
+		FindIterable<Document> docs = coll.find(query);
 
 		if(docs != null)
 		{

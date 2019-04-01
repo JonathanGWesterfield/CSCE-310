@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class FullGameReport
 {
 
-	/** Need Reports on: 2009019000, 2017112000, 2016101601, 2018092303 */
+	/** Need Reports on: 2009091000, 2017112000, 2016101601, 2018092303 */
 	public static void main(String[] args)
 	{
 		long cmt1, cmt2;
@@ -38,6 +38,8 @@ public class FullGameReport
 		// Print out the report
 		System.out.println("\n\nGame Report For Game: " + queryID);
 		report.printScoreReport();
+		summary.printSummary();;
+
 
 	}
 
