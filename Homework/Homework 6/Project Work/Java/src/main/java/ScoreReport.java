@@ -3,19 +3,81 @@ import java.io.*;
 
 public class ScoreReport
 {
+	HashMap<Integer, Integer> homeScoreMap; // Map is <quarter, score for that quarter>
+	HashMap<Integer, Integer> awayScoreMap; // Map is <quarter, score for that quarter>
+	DBManager dbMgr;
+	Integer queryGameID;
+	String homeTeam, awayTeam;
+	int numGameEvents;
+
+	Collection<DBGame> gameEventList;
 
 	public static void main(String[] args)
 	{
+		long cmt1, cmt2;
+
 		System.out.println("Starting Report Generation");
 
-		ScoreReport report = new ScoreReport();
-		long cmt1, cmt2;
-		DBManager dbMgr = new DBManager();
+		// make sure program is invoked correctly
+		if (args.length != 1)
+		{
+			System.out.println("Usage: java ScoreReport <game id>");
+			System.exit(-1);
+		}
+
+		// check to make sure the game id is actually a number
+		if (!isNumeric(args[0]))
+		{
+			System.out.println("Game ID is must be a number!\nExiting!");
+			System.exit(-1);
+		}
 
 		// get the game ID to query for
-		Integer queryID = Integer.parseInt(report.getUserGameID());
+		Integer queryID = Integer.parseInt(args[0]);
 
-		// DBGame dbGame = dbMgr.findAllGames(queryID);
+		ScoreReport report = new ScoreReport(queryID);
+
+
+	}
+
+	public ScoreReport(Integer gameID)
+	{
+		this.homeScoreMap = new HashMap<>();
+		this.awayScoreMap = new HashMap<>();
+		this.dbMgr = new DBManager();
+		this.queryGameID = gameID;
+
+		getScoreInfo();
+
+	}
+
+	public void getScoreInfo()
+	{
+		gameEventList = dbMgr.findAllGames(queryGameID);
+
+		if (gameEventList == null)
+		{
+			System.out.println("THERE WERE NO EVENTS FOUND FOR THIS GAME ID");
+			return;
+		}
+
+		homeTeam = gameEventList.iterator().next().getString("home_team");
+		awayTeam = gameEventList.iterator().next().getString("away_team");
+		numGameEvents = (int)gameEventList.size();
+
+		// get every game event for the given game ID
+		for(DBGame gameEvent : gameEventList)
+		{
+			int quarter = gameEvent.getInteger("qtr");
+			homeScoreMap.put(quarter, gameEvent.getInteger("total_home_score"));
+			awayScoreMap.put(quarter, gameEvent.getInteger("total_away_score"));
+		}
+	}
+
+	public void calcQuarterScores()
+	{
+		ArrayList homeQuarterScores = new ArrayList(), awayQuarterScores = new ArrayList();
+
 
 
 
@@ -45,7 +107,7 @@ public class ScoreReport
 	 * If it's not a number, ask again.
 	 * @return
 	 */
-	public String getUserGameID()
+	public static String getUserGameID()
 	{
 		boolean stop = false;
 		String gameID = "";

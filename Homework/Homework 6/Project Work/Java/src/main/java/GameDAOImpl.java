@@ -1,42 +1,63 @@
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.Block;
+import com.mongodb.client.*;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Indexes;
 import org.bson.Document;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-public class GameDAOImpl implements GameDAO.GameDao
+public class GameDAOImpl implements GameDao
 {
 
 	//list is working as a database
 
-	private MongoDatabase database = null;
+	private MongoDatabase db = null;
 	private DBManager mDBmgr = null;
 	private MongoCollection<Document> coll = null;
 	ArrayList<DBGame> games = null;
 
-	public GameDAOImpl(DBManager mgr, MongoCollection<Document> coll)
+	public GameDAOImpl(MongoClient client, MongoDatabase db)
 	{
-		mDBmgr = mgr;
-		this.coll = coll;
-		if(coll != null)
-			System.out.println("Select plays Collection Successful"); //should throw an exception
+		this.db = db;
+		this.coll = this.db.getCollection("plays");
+		if (coll != null)
+			System.out.println("Select Collection Successful");
 		else
-			System.out.println("plays collection NOT found!");
+		{
+			System.out.println("Collection NOT found!");
+			System.exit(-1);
+		}
 		games = null;	// load games from real database as needed
 	}
 
 
-	@Override
 	public Collection<DBGame> findGames(Integer gameID)
 	{
 		BasicDBObject query = new BasicDBObject();
 		query.put("game_id", gameID);
-		FindIterable<Document> docs = coll.find(query);
+
+		coll.createIndex(Indexes.text("desc"));
+
+		long matchCount = coll.countDocuments(
+				Filters.and(
+						Filters.text("GOOD touchdown"),
+						Filters.eq("game_id", gameID.intValue())
+				)
+		);
+		System.out.println("Text search matches: " + matchCount);
+
+		FindIterable<Document> docs = coll.find(
+				Filters.and(
+						Filters.text("GOOD touchdown"),
+						Filters.eq("game_id", gameID.intValue())
+				)
+
+		);
+
 		if(docs != null)
 		{
 			games = new ArrayList<DBGame>();
@@ -47,5 +68,12 @@ public class GameDAOImpl implements GameDAO.GameDao
 		}
 		return null;
 	}
+
+	Block<Document> printBlock = new Block<Document>() {
+		@Override
+		public void apply(final Document document) {
+			System.out.println(document.toJson());
+		}
+	};
 
 }
