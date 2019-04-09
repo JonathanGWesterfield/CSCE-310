@@ -66,6 +66,12 @@ INPUT /usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
+INPUT /Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Tom Brady Count.png
+INPUT /Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Tom Brady Count.png
+INPUT /Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Terry Bradshaw Count.png
+INPUT /Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Terry Bradshaw Count.png
+INPUT /Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Jim Brown Count.png
+INPUT /Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Jim Brown Count.png
 INPUT /Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.aux
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb

@@ -83,7 +83,7 @@ public class PullAndInsert
 					set("player_name", playerName)
 				);
 
-				System.out.println("Size: " + IDName.size() + "\t "+ playerID);
+				System.out.printf("Size: %d\t%d\t%s\n", IDName.size(), playerID, playerName);
 			}
 
 			System.out.println("Finised Updating!");

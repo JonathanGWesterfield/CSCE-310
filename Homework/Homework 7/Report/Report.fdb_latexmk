@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1554786065 "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.tex" "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.pdf" "Report" 1554786066
-  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.aux" 1554786066 577 147bdc6a5f422de891634fa03d6468f8 ""
-  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.tex" 1554786065 5069 c112836ba13503475587735677a0c4ac ""
+["pdflatex"] 1554827439 "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.tex" "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.pdf" "Report" 1554827440
+  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.aux" 1554827440 961 4d119fe3662176f0a3548f543e0948c4 ""
+  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.tex" 1554827439 5618 0655cb7df8299e8c1d2a5d22eb272b39 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1480098701 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1480098701 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -42,11 +42,14 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1523934492 2717033 f61a5287d9c22a39a74f1979fe3f905c ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1523934516 4220280 10cab8fbd7c5a7c52aba9917e190d018 ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "Report.aux" 1554786066 577 147bdc6a5f422de891634fa03d6468f8 ""
-  "Report.tex" 1554786065 5069 c112836ba13503475587735677a0c4ac ""
+  "Jim Brown Count.png" 1554826648 24623 0fc38c5b11b1896575af6da365ef9a1d ""
+  "Report.aux" 1554827440 961 4d119fe3662176f0a3548f543e0948c4 ""
+  "Report.tex" 1554827439 5618 0655cb7df8299e8c1d2a5d22eb272b39 ""
+  "Terry Bradshaw Count.png" 1554826679 20785 44bd01893aca6d904bd73a74d9d77262 ""
+  "Tom Brady Count.png" 1554826717 19163 4b9af37b75df0d5f918e15ddcc602dba ""
   (generated)
-  "Report.aux"
-  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.log"
   "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.pdf"
-  "Report.pdf"
+  "Report.aux"
   "Report.log"
+  "/Users/JonathanWesterfield/Documents/CSCE 310/Homework/Homework 7/Report/Report.log"
+  "Report.pdf"
