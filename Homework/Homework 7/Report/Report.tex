@@ -1,0 +1,121 @@
+\documentclass [letterpaper,12pt] {article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage[shortlabels]{enumitem}
+\begin{document}
+\title{
+    \huge{Homework 7}
+}
+\author{
+    Jonathan Westerfield \\
+    224005649
+}
+\date{\today}
+\maketitle
+
+\begin{quote}
+\centering
+\textit {
+    An Aggie Does Not Lie Cheat Or Steal Nor Tolerate Those Who Do. \\
+}
+\vspace {1.4in}
+\hrulefill
+\end{quote}
+\newpage
+
+\section{FileMgr.java}
+    Attached is a version of FileMgr.java where I added instrumentation 
+    to track the number of block reads and writes, accessor methods for 
+    these values and methods to reset them. Use your ninja Java skills 
+    to modify the methods \textit{commit()} and \textit{rollback()} in 
+    the class \textit{Transaction} 
+    (in simpledb.remote) to print these statistics—note: you will need to 
+    get the FileMgr object using the static method SimpleDB.fileMgr() in
+    simpledb.server. Reset the counts when you print them. Start the 
+    SimpleDB server and run the client program StudentMajor.java. Turn-in
+    a copy of the output for the server console and explain the counts 
+    printed and the counts output for the client program. Also, turn-in a 
+    hardcopy of your modifications to Transaction.
+    \\
+    \\
+
+\section{SimpleDB Block Size}
+    Assume the SimpleDB block size of 400 given in class Page and that records
+    cannot span blocks. Show the calculation for the maximum number of records
+    that will fit in a SimpleDB record page and the amount of wasted 
+    (fragmented) space in the page for each of the following record sizes
+    given in bytes: 20, 50 and 100 (don’t forget to include the 4-byte 
+    empty/in-use flag for each record). Also, explain how a SimpleDB record 
+    file can have a block with no records in it.
+    \\
+    \\
+
+\section{Transaction T}
+    Consider the following scenario: Transaction T deletes a record from a
+    block, setting a record’s flag to EMPTY. Transaction U inserts a 
+    record into the block and the slot where the previously deleted 
+    record is picked to hold the new record, setting its flag to INUSE. 
+    Transaction U also writes new values into the fields of the new record. 
+    Transaction T rolls back. Since the old values of the deleted record 
+    were not saved in the log, the record cannot be restored to its original 
+    value—ugh! a) Explain why this scenario cannot happen in SimpleDB. 
+    b) If the transactions T and U attempt to perform the above steps, what 
+    actually happens in SimpleDB?
+    \\
+    \\
+
+\section{LogMgr.iterator}
+    The code for LogMgr.iterator calls flush(). Explain why this call is 
+    necessary, or not. Here is the code in question.
+
+    \begin{verbatim}
+        public synchronized Iterator<BasicLogRecord> iterator() {
+            flush();
+            return new LogIterator(currentblk);
+        }
+        private void flush() {
+            mypage.write(currentblk);
+        }
+    \end{verbatim}
+    IS THE CALL TO flush() NECESSARY? Explain your answer.
+    \\
+    \\
+
+\section{SimpleDB Log Manager}
+    The SimpleDB log manager implements the LSN of a log record as its 
+    block number in the log file.
+
+    \begin{enumerate}[(a)]
+        \item Explain why this implementation of LSN does not uniquely
+            identify the log records.
+        \item Explain why this implementation may cause the method 
+            LogMgr.flush to unnecessarily write the log manager’s page 
+            to disk.
+        \item Modify the code (and the implementation of an LSN) so that
+            the page is written to disk only if absolutely necessary. 
+            Turn-in a hardcopy of your code changes.
+        \item How do you know if the code works? See if you can design 
+            an experiment using the code you wrote for problem 1 above
+            to prove that your modified code improves operation of the 
+            log manager. Turn in your experiment and the output results 
+            with an explanation.
+    \end{enumerate}
+
+
+\section{Textbook Exercise 17.1.2, p. 851, Part b.}
+
+\section{Project Problem}
+    The goal of this problem is to modify the Games collection by adding
+    the corresponding player\_name to each game document. A game document
+    contains the player\_id of the corresponding Profile document, but we
+    want to add the player\_name from the Profile document to the game
+    document. You can solve this problem two ways—via shell commands, or 
+    a custom Java program. You decide. As proof of the success of your 
+    solution turn in the output of a shell query on the games collection 
+    using the player\_name (not the player\_id) that returns a count of the 
+    documents in the Games collection for each of the players, “Tom Brady ”, 
+    “Terry Bradshaw” and “Jim Brown”. Submit any java code to ecampus as 
+    part of your ZIP file. You do not have to turn in a hard-copy of your 
+    java code. If you solve it via shell commands, turn in a hardcopy of 
+    the console output from running the commands.
+\end{document}
