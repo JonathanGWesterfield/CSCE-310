@@ -4,7 +4,7 @@
 \usepackage[shortlabels]{enumitem}
 \begin{document}
 \title{
-    \huge{Homework 7}
+    \huge{\textbf{Homework 7}}
 }
 \author{
     Jonathan Westerfield \\
@@ -29,10 +29,10 @@
     these values and methods to reset them. Use your ninja Java skills 
     to modify the methods \textit{commit()} and \textit{rollback()} in 
     the class \textit{Transaction} 
-    (in simpledb.remote) to print these statistics—note: you will need to 
-    get the FileMgr object using the static method SimpleDB.fileMgr() in
-    simpledb.server. Reset the counts when you print them. Start the 
-    SimpleDB server and run the client program StudentMajor.java. Turn-in
+    (in \textit{simpledb.remote}) to print these statistics—note: you will need to 
+    get the \textit{FileMgr} object using the static method \textit{SimpleDB.fileMgr()} in
+    \textit{simpledb.server}. Reset the counts when you print them. Start the 
+    SimpleDB server and run the client program \textit{StudentMajor.java}. Turn-in
     a copy of the output for the server console and explain the counts 
     printed and the counts output for the client program. Also, turn-in a 
     hardcopy of your modifications to Transaction.
@@ -49,6 +49,17 @@
     file can have a block with no records in it.
     \\
     \\
+    For 20 byte records: \(400 mod(20 + 4)=16\) bytes wasted.\\
+    For 50 byte records: \(400 mod(50 + 4)=22\) bytes wasted.\\
+    For 100 byte records: \(400 mod(100 + 4)=88\) bytes wasted.\\
+    \\
+    A SimpleDB record file might have a block with no records in it if
+    the \textit{appendBlock()} function is called erroneously or if we
+    have just created a new block because the last block was full. 
+    This new block has not had anything inserted into it yet.
+
+    \textit{\textbf{POSSIBLY PUT MORE HERE}}
+
 
 \section{Transaction T}
     Consider the following scenario: Transaction T deletes a record from a
@@ -80,6 +91,14 @@
     IS THE CALL TO flush() NECESSARY? Explain your answer.
     \\
     \\
+    Yes. The call to \textit{flush()} is necessary. Since we are trying
+    to get a log of all of the transactions from the database, we need
+    to call \textit{flush()} in order to make sure that any log actions
+    that haven't been written to disk are forced onto the disk. This 
+    needs to be done if we are currently in the middle of a transaction
+    since there are operations we need to keep track of the make sure
+    we don't lose information.
+
 
 \section{SimpleDB Log Manager}
     The SimpleDB log manager implements the LSN of a log record as its 
@@ -88,21 +107,64 @@
     \begin{enumerate}[(a)]
         \item Explain why this implementation of LSN does not uniquely
             identify the log records.
+            \\\\
+            This implementation does not uniquely identify the log
+            records because all log records in a block have the same
+            LSN.
         \item Explain why this implementation may cause the method 
             LogMgr.flush to unnecessarily write the log manager’s page 
             to disk.
+            \\\\
+            This implementation can cause an unnecessary write to the
+            disk because there is no checking if there has been any 
+            addition to the page. This will cause a page to be written
+            to the disk even if there were no changes made since we 
+            can't distinguish between any records in the page.
         \item Modify the code (and the implementation of an LSN) so that
             the page is written to disk only if absolutely necessary. 
             Turn-in a hardcopy of your code changes.
+            \\\\
+            \textit{\textbf{PUT SOMETHING HERE}}
         \item How do you know if the code works? See if you can design 
             an experiment using the code you wrote for problem 1 above
             to prove that your modified code improves operation of the 
             log manager. Turn in your experiment and the output results 
             with an explanation.
+            \\\\
+            \textit{\textbf{PUT SOMETHING HERE}}
     \end{enumerate}
 
 
 \section{Textbook Exercise 17.1.2, p. 851, Part b.}
+    For each of the transactions of Exercise 17.1.1, add the read and 
+    write-actions to the computations and show the effect of the steps 
+    on main memory and disk. Assume that initially A = 5 and B = 10. Also,
+    tell whether it is possible, with the appropriate order of OUTPUT
+    actions, to assure that consistency is preserved even if there is 
+    a crash while the transaction is executing.
+    \begin{table}[htp]
+        \centering
+        \begin{tabular}{l|l|l|l|l|l}
+            Action      & \textit{t}  & Mem A & Mem B & Disk A & Disk B \\
+            \hline
+            Read(B, \textit{t})  & 10 &       & 10    & 5      & 10     \\
+            Read(A, \textit{t})  & 6  & 5     & 10    & 5      & 10     \\
+            \textit{t} := A + B  & 15 & 5     & 10    & 5      & 10     \\
+            Write(B, \textit{t}) & 15 & 5     & 15    & 5      & 10     \\
+            \textit{t} := A + B  & 20 & 5     & 15    & 5      & 10     \\
+            Write(A, \textit{t}) & 20 & 20    & 15    & 5      & 10     \\
+            OUTPUT(B)   & 15 & 20    & 15    & 5      & 15     \\
+            OUTPUT(A)   & 20 & 20    & 15    & 20     & 15     \\      
+        \end{tabular}
+    \end{table}
+    \\
+    This Transaction does NOT maintain consistency in the table. No 
+    ordering of the OUTPUT actions will assure consistency since the
+    transaction breaks consistency in the first place based on the 
+    rule 0 $\leq$ \textit{A} $\leq$ \textit{B}. The only way consistency
+    would be preserved is if the transaction crashed when calculating 
+    \textit{A}. Then \textit{B} would still be greater than \textit{A}.
+
 
 \section{Project Problem}
     The goal of this problem is to modify the Games collection by adding
