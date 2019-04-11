@@ -38,6 +38,19 @@
     hardcopy of your modifications to Transaction.
     \\
     \\
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=\textwidth]{FileMgr Printing.png}
+        \caption{Code for Printing the FileMgr Statistics}
+        \label{fig:filemgrprint}
+    \end{figure}
+
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=5cm]{Unfixed Log Manager.png}
+        \caption{Output the FileMgr Statistics}
+        \label{fig:filemgroutput}
+    \end{figure}
 
 \section{SimpleDB Block Size}
     Assume the SimpleDB block size of 400 given in class Page and that records
@@ -58,8 +71,6 @@
     have just created a new block because the last block was full. 
     This new block has not had anything inserted into it yet.
 
-    \textit{\textbf{POSSIBLY PUT MORE HERE}}
-
 
 \section{Transaction T}
     Consider the following scenario: Transaction T deletes a record from a
@@ -72,8 +83,31 @@
     value—ugh! a) Explain why this scenario cannot happen in SimpleDB. 
     b) If the transactions T and U attempt to perform the above steps, what 
     actually happens in SimpleDB?
-    \\
-    \\
+
+    \begin{enumerate}[(a)]
+        \item This can't occur in SimpleDB because the log file logs every
+            change to the database, including what what values were modified
+            from and to. Therefore, if a value was changed from \textit{v}
+            to \textit{z}, the log file will contain both of those values at
+            that sequence indicating that a change was made.
+        \item The log file has logs of every single change that was made to 
+            the database. These changes are stored in log records that are 
+            written in the form of a log file. This means that the log file
+            will contain the following information below:
+            \begin{itemize}
+                \item Start Transaction \textit{T}.
+                \item Database element \textit{X} was modified and used 
+                    to contain the value \textit{v}, but is now empty.
+                \item Commit Transaction \textit{T}.
+            \end{itemize}
+
+            If Transaction \textit{T} is rolled back, the recovery manager will
+            use the log file to find the corresponding step that contains the 
+            old value and put the old value back into \textit{v}. Undo logging 
+            will also just write new logs instead of removing logs that were
+            “undone".
+    \end{enumerate}
+
 
 \section{LogMgr.iterator}
     The code for LogMgr.iterator calls flush(). Explain why this call is 
@@ -112,7 +146,7 @@
             records because all log records in a block have the same
             LSN.
         \item Explain why this implementation may cause the method 
-            LogMgr.flush to unnecessarily write the log manager’s page 
+            \textit{LogMgr.flush()} to unnecessarily write the log manager’s page 
             to disk.
             \\\\
             This implementation can cause an unnecessary write to the
@@ -123,15 +157,37 @@
         \item Modify the code (and the implementation of an LSN) so that
             the page is written to disk only if absolutely necessary. 
             Turn-in a hardcopy of your code changes.
-            \\\\
-            \textit{\textbf{PUT SOMETHING HERE}}
+            \\
+            \begin{figure}[htp]
+                \centering
+                \includegraphics[width=14cm]{LogMgr Fix1.png}
+                \caption{First I modified the \textit{flush()} function to use the block hash to 
+                    see if any changes were even made to the block.}
+                \label{fig:logmgr1}
+            \end{figure}
+            \\
+            \begin{figure}[htp]
+                \centering
+                \includegraphics[width=\textwidth]{LogMgr Fix2.png}
+                \caption{Compute the hash of the block after a record is added.}
+                \label{fig:logmgr2}
+            \end{figure}
         \item How do you know if the code works? See if you can design 
             an experiment using the code you wrote for problem 1 above
             to prove that your modified code improves operation of the 
             log manager. Turn in your experiment and the output results 
             with an explanation.
             \\\\
-            \textit{\textbf{PUT SOMETHING HERE}}
+            We know that our code works because we can explicitly see from the
+            figure below that we did not flush since there were no blocks being
+            written. Otherwise, the code would just flush despite there being
+            no changes in our blocks.
+            \begin{figure}[htp]
+                \centering
+                \includegraphics[width=5cm]{Fixed Log Manager.png}
+                \caption{Output showing that we only flushed when there were changes.}
+                \label{fig:fxiedfilemgroutput}
+            \end{figure}
     \end{enumerate}
 
 
@@ -148,7 +204,7 @@
             Action      & \textit{t}  & Mem A & Mem B & Disk A & Disk B \\
             \hline
             Read(B, \textit{t})  & 10 &       & 10    & 5      & 10     \\
-            Read(A, \textit{t})  & 6  & 5     & 10    & 5      & 10     \\
+            Read(A, \textit{t})  & 5  & 5     & 10    & 5      & 10     \\
             \textit{t} := A + B  & 15 & 5     & 10    & 5      & 10     \\
             Write(B, \textit{t}) & 15 & 5     & 15    & 5      & 10     \\
             \textit{t} := A + B  & 20 & 5     & 15    & 5      & 10     \\

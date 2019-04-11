@@ -157,6 +157,8 @@ public class LogMgr implements Iterable<BasicLogRecord> {
       } else {
          System.out.println("Did Not flush");
       }
+
+      // TODO: NEED TO FIGURE OUT IF THIS WORKS
    }
 
    /**
@@ -173,7 +175,6 @@ public class LogMgr implements Iterable<BasicLogRecord> {
     * integer added to the end of each log record whose value is the offset of the
     * previous log record. The first four bytes of the page contain an integer
     * whose value is the offset of the integer for the last log record in the page.
-    * Compute the new hash of our block now that the record has been added
     */
    private void finalizeRecord() {
       mypage.setInt(currentpos, getLastRecordPosition());
