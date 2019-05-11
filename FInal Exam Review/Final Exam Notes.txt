@@ -1,0 +1,12 @@
+No make up exam
+Open book and may use a laptop to access the SimpleDB source code, and run Mongo
+
+material after the last midterm
+
+Covers SimpleDB and Mongo
+
+Comprehensive for chapters 3, 5, and 6
+    DAO pattern not it textbook
+
+
+

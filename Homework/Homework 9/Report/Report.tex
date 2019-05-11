@@ -1,0 +1,134 @@
+\documentclass [letter,12pt] {article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage[shortlabels]{enumitem}
+\begin{document}
+\title{
+    \huge{\textbf{Homework 9}}
+}
+\author{
+    Jonathan Westerfield \\
+    224005649
+}
+\date{\today}
+\maketitle
+
+\begin{quote}
+\centering
+\textit {
+    An Aggie Does Not Lie Cheat Or Steal Nor Tolerate Those Who Do. \\
+}
+\vspace {1.4in}
+\hrulefill
+\end{quote}
+\newpage
+
+\section{SimpleDB Where Clause}
+    In SimpleDB, a valid SQL statement is SELECT sname FROM  student; which does not
+    have a WHERE clause. However, SelectScan requires a Predicate. Explain how
+    SimpleDB successfully implements this situation.
+    \\
+    \\
+    SimpleDB executes the select statement successfully in the parser by setting 
+    the required predicate to Null or an empty String when there is no WHERE clause
+    This then returns all of the rows that were given since there is no longer
+    a limiting condition for the query.
+    
+    
+\section{Exercise 15.3.2 p.722}
+    Suppose B(R) = B(S) = 10,000, and M = 1000. Calculate the disk I/O cost
+    of a nested-loop join.
+    \\
+    \\
+    \[\frac{B(S)(M-1 + B(R))}{M-1} = \frac{1000((1000-1) + 10000)}{1000-1} = 110100\] 
+    \\
+    \begin{center}
+        There would be 110100 Disk I/O
+    \end{center}
+    
+    
+\section{MethodName()}
+    Place a System.out.println("methodName()"); statement at the beginning of every
+    method in the class Parser and every "eat" method of class Lexar - changing the
+    "methodName()" printed to the name of the method called. Run the following test
+    program:
+    \begin{verbatim}
+package simpledb.parse; public class TestParser 
+{
+    public static void main(String[] args) 
+    {
+        Parser parser = new Parser("delete from xyz where a = b and c = 0");
+        DeleteData data = parser.delete();
+        System.out.println("table: "+data.tableName().toString());
+        System.out.println("Pred: "+data.pred().toString());
+    } 
+}
+    \end{verbatim}
+    
+    Using the output of the test program, create a parse tree or the given SQL command.
+    \\
+    \\
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=\textwidth]{Parser_Tree.png}
+        \caption{Parse Tree of the Above Code}
+        \label{fig:updateplanner}
+    \end{figure}
+    
+    
+\section{Transaction Method nextTxNumber Synchronized}
+    Explanin why the Transaction class method nextTxNumber is synchronized. What 
+    could happen if it were not? Is it a problem for the other methods in that class
+    to not be synchronized? Explain your answer.
+    \\
+    \\
+    The nextTxNumber() method is synchronized in order to prevent race
+    conditions. The Transaction class is supposed to be used for concurrent
+    operations as seen by the use of the ConcurrencyMgr type. Keeping
+    nextTxNumber synchronized is used in order to make sure two or more 
+    running threads to not attempt to increment the txNumber at the same
+    time. If they were to do so, it would be impossible to determine the 
+    behavior of the program since any data type that is being used 
+    concurrently without protection can cause very strange and unpredictable
+    results. There are multiple transactions being created at the same due
+    to the possible multitude of transactions a user can run. This keeps 
+    the program flow predictable by controlling how the transaction number 
+    is updated.
+    
+    
+\section{SimpleDB Update Planner}
+    The SimpleDB update planner doesn't verify that the assignment of a new value to
+    the specified field in a modify statement is type-correct. For example, in the 
+    ChangeMajor.java program, if we had "UPDATE student SET MajorId=`30', a problem 
+    happens during the execution of the command because MajorId is an integer in the
+    student table and not a string. Demonstrate the problem and turn-in a screen 
+    shot of the stack trace when the error happens. After looking at the error,
+    check the server. You’ll find that it is still operational. So only the client 
+    code was terminated. Philosophically, as a systems developer, would you fix the
+    code in the TableScan.setVal() method, throw an SQLException or do nothing (let 
+    the user program terminate with the ClassCastException? Explain your answer.
+    \\
+    \\
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=\textwidth]{Update_Planner.png}
+        \caption{Exception Thrown By the Update Planner}
+        \label{fig:updateplanner}
+    \end{figure}
+    
+    I would personally throw a SQLException for a couple of reasons. First, throwing
+    a SQLException would closer mimic production database systems such a MySQL and 
+    MariaDB. When trying to insert the wrong data type into a field, it will not 
+    allow you do so and will throw an exception. Secondly, there are just too many
+    variables at play and too many assumptions that we would need to make about 
+    what the user was attempting to do. There is a possibility the user intentionally 
+    did this but it is also very likely the user made a mistake and we don't want to 
+    allow that mistake to propagate. It would be very bad if we assumed the user meant 
+    add the number 30, change setVal() to convert to a string and upload that to the 
+    SimpleDB database, and had the user \textit{actually} attempt to put a string 
+    literal into the MajorID field. Allowing the client to rollback instead of aborting 
+    would be a better way to go about it. The user can fix the mistake and
+    run the query again.
+    
+    
+\end{document}
